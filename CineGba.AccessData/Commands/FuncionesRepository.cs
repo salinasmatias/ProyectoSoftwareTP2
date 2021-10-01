@@ -36,7 +36,10 @@ namespace CineGba.AccessData.Commands
 
         public List<Funcion> GetAllFunciones()
         {
-            return _context.Funciones.ToList();
+            return _context.Funciones
+                                      .OrderByDescending(Funcion => Funcion.Fecha)
+                                      .ThenByDescending(funcion => funcion.Horario)
+                                      .ToList();
         }
 
         public Funcion GetFuncionById(int funcionId)
@@ -46,18 +49,29 @@ namespace CineGba.AccessData.Commands
 
         public List<Funcion> GetFuncionesByFecha(DateTime date)
         {
-            return _context.Funciones.Where(Funcion => Funcion.Fecha == date).ToList();
+            return _context.Funciones
+                                      .Where(Funcion => Funcion.Fecha == date)
+                                      .OrderByDescending(Funcion => Funcion.Horario)
+                                      .ToList();
         }
 
         public List<Funcion> GetFuncionesByFechaAndTitulo(DateTime date, string title)
         {
             var pelicula = _context.Peliculas.SingleOrDefault(Pelicula => Pelicula.Titulo == title);
-            return _context.Funciones.Where(Funcion => Funcion.Fecha == date && Funcion.PeliculaId == pelicula.PeliculaId).ToList();
+            
+            return _context.Funciones
+                                     .Where(Funcion => Funcion.Fecha == date && Funcion.PeliculaId == pelicula.PeliculaId)
+                                     .OrderByDescending(Funcion => Funcion.Horario)
+                                     .ToList();
         }
 
         public List<Funcion> GetFuncionesByPelicula(int peliculaId)
         {
-            return _context.Funciones.Where(Funcion => Funcion.PeliculaId == peliculaId).ToList();
+            return _context.Funciones
+                                      .Where(Funcion => Funcion.PeliculaId == peliculaId)
+                                      .OrderByDescending(Funcion => Funcion.Fecha)
+                                      .ThenByDescending(Funcion => Funcion.Horario)
+                                      .ToList();
         }
 
         public List<Funcion> GetFuncionesByPelicula(string title)
@@ -68,7 +82,11 @@ namespace CineGba.AccessData.Commands
 
         public List<Funcion> GetFuncionesBySala(int salaId)
         {
-            return _context.Funciones.Where(Funcion => Funcion.SalaId == salaId).ToList();
+            return _context.Funciones
+                                      .Where(Funcion => Funcion.SalaId == salaId)
+                                      .OrderByDescending(Funcion => Funcion.Fecha)
+                                      .ThenByDescending(Funcion => Funcion.Horario)
+                                      .ToList();
         }
     }
 }

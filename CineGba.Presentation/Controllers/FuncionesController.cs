@@ -30,24 +30,13 @@ namespace CineGba.Presentation.Controllers
         {
             try
             {
-                if (fecha == null && titulo == null)
-                {
+                if (fecha == null)
                     fecha = DateTime.Now.Date;
-                    var funciones = _service.GetFuncionesByFecha(fecha.Value.Date);
-                    var funcionesMapeadas = _mapper.Map<List<FuncionDto>>(funciones);
 
-                    return Ok(funcionesMapeadas);
-                }
-                else if (fecha != null && titulo ==null)
+
+                if (titulo == null)
                 {
                     var funciones = _service.GetFuncionesByFecha(fecha.Value.Date);
-                    var funcionesMapeadas = _mapper.Map<List<FuncionDto>>(funciones);
-
-                    return Ok(funcionesMapeadas);
-                }
-                else if (fecha == null && titulo != null)
-                {
-                    var funciones = _service.GetFuncionesByPelicula(titulo);
                     var funcionesMapeadas = _mapper.Map<List<FuncionDto>>(funciones);
 
                     return Ok(funcionesMapeadas);
@@ -59,13 +48,14 @@ namespace CineGba.Presentation.Controllers
 
                     return Ok(funcionesMapeadas);
                 }
+
             }
             catch (Exception)
             {
-
                 return StatusCode(500, "Internal server error");
             }
         }
+
 
         [HttpPost]
         [ProducesResponseType(typeof(FuncionDto), StatusCodes.Status201Created)]
