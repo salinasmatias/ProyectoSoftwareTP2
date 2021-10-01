@@ -43,8 +43,10 @@ namespace CineGba.Presentation
             services.AddTransient<IGenericRepository, GenericRepository>();
             services.AddTransient<IPeliculasRepository, PeliculasRepository>();
             services.AddTransient<IFuncionesRepository, FuncionesRepository>();
+            services.AddTransient<ITicketRepository, TicketRepository>();
             services.AddTransient<IPeliculaService, PeliculaService>();
             services.AddTransient<IFuncionService, FuncionService>();
+            services.AddTransient<ITicketService, TicketService>();
             services.AddTransient<IFuncionValidation, FuncionValidation>();
             services.AddAutoMapper(typeof(Startup));
             /*services.AddTransient<ISalaService, SalaService>();

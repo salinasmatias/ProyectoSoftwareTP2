@@ -26,6 +26,7 @@ namespace CineGba.Presentation.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(FuncionDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public IActionResult GetFuncionesByTitleOrFecha(DateTime? fecha = null, string titulo = null )
         {
             try
@@ -60,6 +61,7 @@ namespace CineGba.Presentation.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(FuncionDto), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status409Conflict)]
         public IActionResult CreateFuncion([FromBody]FuncionDto funcion)
         {
             try
@@ -72,7 +74,7 @@ namespace CineGba.Presentation.Controllers
                     return Created("~api/funcion/", funcionCreada);
                 }
                 
-                return BadRequest("Error, el horario y fecha de la función a crear se superpone con una función ya existente en el sistema.");
+                return Conflict("Error, el horario y fecha de la función a crear se superpone con una función ya existente en el sistema.");
             }
             catch (Exception e)
             {
@@ -83,6 +85,7 @@ namespace CineGba.Presentation.Controllers
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult DeleteFuncion(int id)

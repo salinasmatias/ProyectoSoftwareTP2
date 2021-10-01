@@ -1,4 +1,6 @@
-﻿using CineGba.Domain.Entities;
+﻿using CineGba.Domain.Commands;
+using CineGba.Domain.Dtos;
+using CineGba.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,48 +13,65 @@ namespace CineGba.Application.Services
     {
         List<Ticket> GetAllTickets();
         Ticket GetTicketById(Guid id);
-        List<Ticket> GetTicketsByPelicula(int peliculaId);
-        List<Ticket> GetTicketsByFuncion(int funcionId);
+        List<Ticket> GetTicketsByUserAndFuncion(int funcionId, string user);
         int GetTicketsVendidosByFuncion(int funcionId);
-        int GetTicketsVendidosByPelicula(int peliculaId);
         int GetTicketsDisponiblesByFuncion(int funcionId);
+        List<Ticket> CreateTicket(TicketDto ticket);
     }
 
     public class TicketService : ITicketService
     {
+        ITicketRepository _repository;
+
+        public TicketService(ITicketRepository repository)
+        {
+            _repository = repository;
+        }
+
+        public List<Ticket> CreateTicket(TicketDto ticket)
+        {
+            List<Ticket> ticketsVendidos = new List<Ticket>();
+
+            if(ticket.Cantidad <= GetTicketsDisponiblesByFuncion(ticket.FuncionId))
+            {
+                for(int i = 0; i < ticket.Cantidad; i++)
+                {
+                    var ticketVendido = new Ticket
+                    {
+                        TicketId = Guid.NewGuid(),
+                        FuncionId = ticket.FuncionId,
+                        Usuario = ticket.Usuario
+                    };
+                    ticketsVendidos.Add(ticketVendido);
+                    _repository.Add(ticketVendido);
+                }
+            }
+            return ticketsVendidos;
+        }
+
         public List<Ticket> GetAllTickets()
         {
-            throw new NotImplementedException();
+           return _repository.GetAllTickets();
         }
 
         public Ticket GetTicketById(Guid id)
         {
-            throw new NotImplementedException();
+            return _repository.GetTicketById(id);
         }
 
-        public List<Ticket> GetTicketsByFuncion(int funcionId)
+        public List<Ticket> GetTicketsByUserAndFuncion(int funcionId, string user)
         {
-            throw new NotImplementedException();
-        }
-
-        public List<Ticket> GetTicketsByPelicula(int peliculaId)
-        {
-            throw new NotImplementedException();
+            return _repository.GetTicketsByUserAndFuncion(funcionId, user);
         }
 
         public int GetTicketsDisponiblesByFuncion(int funcionId)
         {
-            throw new NotImplementedException();
+            return _repository.GetTicketsDisponiblesByFuncion(funcionId);
         }
 
         public int GetTicketsVendidosByFuncion(int funcionId)
         {
-            throw new NotImplementedException();
-        }
-
-        public int GetTicketsVendidosByPelicula(int peliculaId)
-        {
-            throw new NotImplementedException();
+            return _repository.GetTicketsVendidosByFuncion(funcionId);
         }
     }
 }

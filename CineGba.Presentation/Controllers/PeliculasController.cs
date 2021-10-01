@@ -43,6 +43,7 @@ namespace CineGba.Presentation.Controllers
 
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(PeliculaDto), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public IActionResult GetPeliculaById(int id)
         {
