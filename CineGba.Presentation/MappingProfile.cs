@@ -13,6 +13,7 @@ namespace CineGba.Presentation
         public MappingProfile()
         {
             CreateMap<Pelicula, PeliculaDto>();
+            CreateMap<PeliculaDto, Pelicula>();
             CreateMap<Funcion, FuncionDto>().ForMember(FuncionDto => FuncionDto.Fecha, opt => opt.MapFrom(src => src.Fecha.ToString("yyyy-MM-dd")))
                                             .ForMember(FuncionDto => FuncionDto.Horario, opt => opt.MapFrom(src => src.Horario.Value.ToString(@"hh\:mm")));
             CreateMap<FuncionDto, Funcion>();

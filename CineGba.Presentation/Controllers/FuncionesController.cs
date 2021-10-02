@@ -57,6 +57,26 @@ namespace CineGba.Presentation.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("pelicula/{peliculaId}")]
+        [ProducesResponseType(typeof(List<FuncionDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public IActionResult GetFuncionesByPelicula(int peliculaId)
+        {
+            try
+            {
+                var funciones = _service.GetFuncionesByPelicula(peliculaId);
+                var funcionesMapeadas = _mapper.Map<List<FuncionDto>>(funciones);
+
+                return Ok(funcionesMapeadas);
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
 
         [HttpPost]
         [ProducesResponseType(typeof(FuncionDto), StatusCodes.Status201Created)]

@@ -1,4 +1,5 @@
 ﻿using CineGba.Domain.Commands;
+using CineGba.Domain.Dtos;
 using CineGba.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace CineGba.Application.Services
         List<Pelicula> GetAllPeliculas();
         Pelicula GetPeliculaById(int id);
         Pelicula GetPeliculaByTitle(string title);
+        void UpdatePelicula(Pelicula pelicula);
 
     }
     public class PeliculaService : IPeliculaService
@@ -37,6 +39,11 @@ namespace CineGba.Application.Services
         public Pelicula GetPeliculaByTitle(string title)
         {
             return _repository.GetPeliculaByTitle(title);
+        }
+
+        public void UpdatePelicula(Pelicula pelicula)
+        {
+            _repository.Update(pelicula);
         }
     }
 }

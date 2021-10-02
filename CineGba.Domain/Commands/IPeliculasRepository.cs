@@ -12,5 +12,6 @@ namespace CineGba.Domain.Commands
         List<Pelicula> GetAllPeliculas();
         Pelicula GetPeliculaById(int id);
         Pelicula GetPeliculaByTitle(string title);
+        void Update(Pelicula pelicula);
     }
 }

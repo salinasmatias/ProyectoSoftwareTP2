@@ -30,5 +30,11 @@ namespace CineGba.AccessData.Commands
         {
             return _context.Peliculas.FirstOrDefault(Pelicula => Pelicula.Titulo == title);
         }
+
+        public void Update(Pelicula pelicula)
+        {
+            _context.Update(pelicula);
+            _context.SaveChanges();
+        }
     }
 }

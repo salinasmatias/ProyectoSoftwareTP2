@@ -64,5 +64,38 @@ namespace CineGba.Presentation.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+
+        [HttpPut("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public IActionResult UpdatePelicula(int id, [FromBody]PeliculaDto pelicula)
+        {
+            try
+            {
+                if(pelicula == null)
+                {
+                    return BadRequest("El cuerpo de la película no puede ser nulo. " +
+                        "Todos los campos deben estar completos para poder realizar la actualización");
+                }
+
+                var peliculaEntity = _service.GetPeliculaById(id);
+
+                if(peliculaEntity == null)
+                {
+                    return NotFound();
+                }
+
+                _mapper.Map(pelicula, peliculaEntity);
+                _service.UpdatePelicula(peliculaEntity);
+                
+                return NoContent();
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(500, "Internal server error");
+            }
+        }
     }
 }
