@@ -3,9 +3,6 @@ using CineGba.Domain.Dtos;
 using CineGba.Domain.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CineGba.Application.Services
 {
@@ -21,7 +18,7 @@ namespace CineGba.Application.Services
 
     public class TicketService : ITicketService
     {
-        ITicketRepository _repository;
+        private readonly ITicketRepository _repository;
 
         public TicketService(ITicketRepository repository)
         {
@@ -32,7 +29,7 @@ namespace CineGba.Application.Services
         {
             List<Ticket> ticketsVendidos = new List<Ticket>();
 
-            if(ticket.Cantidad <= GetTicketsDisponiblesByFuncion(ticket.FuncionId))
+            if(ticket.Cantidad <= GetTicketsDisponiblesByFuncion(ticket.FuncionId) && ticket.Cantidad > 0)
             {
                 for(int i = 0; i < ticket.Cantidad; i++)
                 {

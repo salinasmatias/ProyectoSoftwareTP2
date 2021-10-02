@@ -1,24 +1,15 @@
 using CineGba.AccessData;
 using CineGba.AccessData.Commands;
-using CineGba.AccessData.Queries;
 using CineGba.Application.Services;
 using CineGba.Application.Validations;
 using CineGba.Domain.Commands;
-using CineGba.Domain.Queries;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CineGba.Presentation
 {
@@ -42,7 +33,6 @@ namespace CineGba.Presentation
             });
             var connectionString = Configuration.GetSection("ConnectionString").Value;
             services.AddDbContext<CineContext>(options => options.UseSqlServer(connectionString));
-            services.AddTransient<IGenericRepository, GenericRepository>();
             services.AddTransient<IPeliculasRepository, PeliculasRepository>();
             services.AddTransient<IFuncionesRepository, FuncionesRepository>();
             services.AddTransient<ITicketRepository, TicketRepository>();
@@ -50,7 +40,6 @@ namespace CineGba.Presentation
             services.AddTransient<IFuncionService, FuncionService>();
             services.AddTransient<ITicketService, TicketService>();
             services.AddTransient<IFuncionValidation, FuncionValidation>();
-            services.AddTransient<IFuncionesQueries, FuncionesQueries>();
             services.AddAutoMapper(typeof(Startup));
             /*services.AddTransient<ISalaService, SalaService>();
             services.AddTransient<ITicketService, TicketService>();

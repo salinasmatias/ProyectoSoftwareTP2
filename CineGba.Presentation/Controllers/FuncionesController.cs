@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
 using CineGba.Application.Services;
 using CineGba.Domain.Dtos;
-using CineGba.Domain.Entities;
-using CineGba.Domain.Queries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CineGba.Presentation.Controllers
 {
@@ -17,19 +13,17 @@ namespace CineGba.Presentation.Controllers
     public class FuncionesController : ControllerBase
     {
         private readonly IFuncionService _service;
-        private readonly IFuncionesQueries _queries;
         private readonly IMapper _mapper;
 
-        public FuncionesController(IFuncionService service, IFuncionesQueries queries, IMapper mapper)
+        public FuncionesController(IFuncionService service, IMapper mapper)
         {
             _service = service;
-            _queries = queries;
             _mapper = mapper;
         }
 
         [HttpGet]
         [ProducesResponseType(typeof(FuncionDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult GetFuncionesByTitleOrFecha(DateTime? fecha = null, string titulo = null )
         {
             try
@@ -113,6 +107,7 @@ namespace CineGba.Presentation.Controllers
             try
             {
                 var funcion = _service.GetFuncionById(id);
+                
                 if(funcion == null)
                 {
                     return NotFound();
@@ -120,11 +115,9 @@ namespace CineGba.Presentation.Controllers
                 
                 _service.DeleteFuncion(funcion);
                 return NoContent();
-
             }
             catch (Exception)
             {
-
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -139,18 +132,18 @@ namespace CineGba.Presentation.Controllers
             try
             {
                 var funcion = _service.GetFuncionById(id);
-                var ticketsDisponibles = _queries.GetTicketsDisponiblesByFuncion(id);
 
                 if(funcion == null)
                 {
                     return NotFound();
                 }
 
+                var ticketsDisponibles = _service.GetTicketsDisponiblesByFuncion(id);
+                
                 return Ok(ticketsDisponibles);
             }
             catch (Exception)
             {
-
                 return StatusCode(500, "Internal server error");
             }
         }

@@ -5,9 +5,6 @@ using CineGba.Domain.Dtos;
 using CineGba.Domain.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CineGba.Application.Services
 {
@@ -22,15 +19,19 @@ namespace CineGba.Application.Services
         List<Funcion> GetFuncionesByPelicula(string titulo);
         List<Funcion> GetFuncionesByFecha(DateTime date);
         List<Funcion> GetFuncionesByFechaAndTitulo(DateTime date, string titulo);
+        int GetTicketsDisponiblesByFuncion(int funcionId);
     }
     public class FuncionService : IFuncionService
     {
-        IFuncionesRepository _repository;
-        IFuncionValidation _validation;
-        IMapper _mapper;
-        public FuncionService(IFuncionesRepository repository, IFuncionValidation validation, IMapper mapper)
+        private readonly IFuncionesRepository _funcionesRepository;
+        private readonly ITicketRepository _ticketRepository;
+        private readonly IFuncionValidation _validation;
+        private readonly IMapper _mapper;
+        
+        public FuncionService(IFuncionesRepository funcionesRepository, ITicketRepository ticketRepository, IFuncionValidation validation, IMapper mapper)
         {
-            _repository = repository;
+            _funcionesRepository = funcionesRepository;
+            _ticketRepository = ticketRepository;
             _validation = validation;
             _mapper = mapper;
         }
@@ -41,7 +42,7 @@ namespace CineGba.Application.Services
             
             if (_validation.ValidarFuncion(funcionMapeada))
             {
-                _repository.Add(funcionMapeada);
+                _funcionesRepository.Add(funcionMapeada);
             }
             else
             {
@@ -53,42 +54,47 @@ namespace CineGba.Application.Services
 
         public void DeleteFuncion(Funcion funcion)
         {
-            _repository.Delete(funcion);
+            _funcionesRepository.Delete(funcion);
         }
 
         public void DeleteFuncionById(int id)
         {
-            _repository.DeleteById(id);
+            _funcionesRepository.DeleteById(id);
         }
 
         public List<Funcion> GetAllFunciones()
         {
-            return _repository.GetAllFunciones();
+            return _funcionesRepository.GetAllFunciones();
         }
 
         public Funcion GetFuncionById(int id)
         {
-            return _repository.GetFuncionById(id);
+            return _funcionesRepository.GetFuncionById(id);
         }
 
         public List<Funcion> GetFuncionesByFecha(DateTime date)
         {
-            return _repository.GetFuncionesByFecha(date);
+            return _funcionesRepository.GetFuncionesByFecha(date);
         }
 
         public List<Funcion> GetFuncionesByFechaAndTitulo(DateTime date, string titulo)
         {
-            return _repository.GetFuncionesByFechaAndTitulo(date, titulo);
+            return _funcionesRepository.GetFuncionesByFechaAndTitulo(date, titulo);
         }
 
         public List<Funcion> GetFuncionesByPelicula(int peliculaId)
         {
-            return _repository.GetFuncionesByPelicula(peliculaId);
+            return _funcionesRepository.GetFuncionesByPelicula(peliculaId);
         }
 
         public List<Funcion> GetFuncionesByPelicula(string titulo)
         {
-            return _repository.GetFuncionesByPelicula(titulo);
+            return _funcionesRepository.GetFuncionesByPelicula(titulo);
+        }
+
+        public int GetTicketsDisponiblesByFuncion(int funcionId)
+        {
+            return _ticketRepository.GetTicketsDisponiblesByFuncion(funcionId);
         }
     }
 }

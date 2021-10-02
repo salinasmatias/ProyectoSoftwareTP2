@@ -3,14 +3,13 @@ using CineGba.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CineGba.AccessData.Commands
 {
     public class FuncionesRepository : IFuncionesRepository
     {
         private readonly CineContext _context;
+        
         public FuncionesRepository(CineContext context)
         {
             _context = context;

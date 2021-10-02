@@ -1,11 +1,6 @@
 ﻿using CineGba.Domain.Commands;
-using CineGba.Domain.Dtos;
 using CineGba.Domain.Entities;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CineGba.Application.Services
 {
@@ -19,7 +14,7 @@ namespace CineGba.Application.Services
     }
     public class PeliculaService : IPeliculaService
     {
-        private IPeliculasRepository _repository;
+        private readonly IPeliculasRepository _repository;
 
         public PeliculaService(IPeliculasRepository repository)
         {

@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
 using CineGba.Application.Services;
 using CineGba.Domain.Dtos;
-using CineGba.Domain.Entities;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CineGba.Presentation.Controllers
 {
@@ -24,33 +21,17 @@ namespace CineGba.Presentation.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        public IActionResult GetAllPeliculas()
-        {
-            try
-            {
-                var peliculas = _service.GetAllPeliculas();
-                var peliculasResult = _mapper.Map<List<PeliculaDto>>(peliculas);
-
-                return Ok(peliculasResult);
-            }
-            catch (Exception)
-            {
-
-                return StatusCode(500, "Internal server error");
-            }
-        }
-
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(PeliculaDto), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult GetPeliculaById(int id)
         {
             try
             {
                 var pelicula = _service.GetPeliculaById(id);
                 var peliculaMapped = _mapper.Map<PeliculaDto>(pelicula);
+                
                 if (pelicula == null)
                 {
                     return NotFound();
@@ -60,7 +41,6 @@ namespace CineGba.Presentation.Controllers
             }
             catch (Exception)
             {
-
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -69,14 +49,14 @@ namespace CineGba.Presentation.Controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult UpdatePelicula(int id, [FromBody]PeliculaDto pelicula)
         {
             try
             {
                 if(pelicula == null)
                 {
-                    return BadRequest("El cuerpo de la película no puede ser nulo. " +
-                        "Todos los campos deben estar completos para poder realizar la actualización");
+                    return BadRequest("Todos los campos deben estar completos para poder realizar la actualización de este elemento.");
                 }
 
                 var peliculaEntity = _service.GetPeliculaById(id);
@@ -93,7 +73,6 @@ namespace CineGba.Presentation.Controllers
             }
             catch (Exception)
             {
-
                 return StatusCode(500, "Internal server error");
             }
         }
