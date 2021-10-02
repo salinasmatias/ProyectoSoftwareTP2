@@ -2,6 +2,7 @@
 using CineGba.Application.Services;
 using CineGba.Domain.Dtos;
 using CineGba.Domain.Entities;
+using CineGba.Domain.Queries;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -16,11 +17,13 @@ namespace CineGba.Presentation.Controllers
     public class FuncionesController : ControllerBase
     {
         private readonly IFuncionService _service;
+        private readonly IFuncionesQueries _queries;
         private readonly IMapper _mapper;
 
-        public FuncionesController(IFuncionService service, IMapper mapper)
+        public FuncionesController(IFuncionService service, IFuncionesQueries queries, IMapper mapper)
         {
             _service = service;
+            _queries = queries;
             _mapper = mapper;
         }
 
@@ -60,7 +63,7 @@ namespace CineGba.Presentation.Controllers
         [HttpGet]
         [Route("pelicula/{peliculaId}")]
         [ProducesResponseType(typeof(List<FuncionDto>), StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult GetFuncionesByPelicula(int peliculaId)
         {
             try
@@ -72,7 +75,6 @@ namespace CineGba.Presentation.Controllers
             }
             catch (Exception)
             {
-
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -98,14 +100,12 @@ namespace CineGba.Presentation.Controllers
             }
             catch (Exception e)
             {
-
                 return BadRequest(e.Message);
             }
         }
 
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult DeleteFuncion(int id)
@@ -121,6 +121,32 @@ namespace CineGba.Presentation.Controllers
                 _service.DeleteFuncion(funcion);
                 return NoContent();
 
+            }
+            catch (Exception)
+            {
+
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpGet]
+        [Route("{id:int}/tickets")]
+        [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult GetTicketsDisponiblesByFuncion(int id)
+        {
+            try
+            {
+                var funcion = _service.GetFuncionById(id);
+                var ticketsDisponibles = _queries.GetTicketsDisponiblesByFuncion(id);
+
+                if(funcion == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(ticketsDisponibles);
             }
             catch (Exception)
             {

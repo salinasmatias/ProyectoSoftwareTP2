@@ -1,8 +1,10 @@
 using CineGba.AccessData;
 using CineGba.AccessData.Commands;
+using CineGba.AccessData.Queries;
 using CineGba.Application.Services;
 using CineGba.Application.Validations;
 using CineGba.Domain.Commands;
+using CineGba.Domain.Queries;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -48,6 +50,7 @@ namespace CineGba.Presentation
             services.AddTransient<IFuncionService, FuncionService>();
             services.AddTransient<ITicketService, TicketService>();
             services.AddTransient<IFuncionValidation, FuncionValidation>();
+            services.AddTransient<IFuncionesQueries, FuncionesQueries>();
             services.AddAutoMapper(typeof(Startup));
             /*services.AddTransient<ISalaService, SalaService>();
             services.AddTransient<ITicketService, TicketService>();
