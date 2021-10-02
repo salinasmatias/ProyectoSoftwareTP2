@@ -40,7 +40,7 @@ namespace CineGba.Application.Services
         {
             var funcionMapeada = _mapper.Map<Funcion>(funcion);
             
-            if (_validation.ValidarFuncion(funcionMapeada))
+            if (_validation.ValidarFecha(funcionMapeada))
             {
                 _funcionesRepository.Add(funcionMapeada);
             }

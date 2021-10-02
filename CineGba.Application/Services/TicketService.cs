@@ -1,4 +1,5 @@
-﻿using CineGba.Domain.Commands;
+﻿using CineGba.Application.Validations;
+using CineGba.Domain.Commands;
 using CineGba.Domain.Dtos;
 using CineGba.Domain.Entities;
 using System;
@@ -19,16 +20,21 @@ namespace CineGba.Application.Services
     public class TicketService : ITicketService
     {
         private readonly ITicketRepository _repository;
+        private readonly IFuncionValidation _validation;
 
-        public TicketService(ITicketRepository repository)
+        public TicketService(ITicketRepository repository, IFuncionValidation validation)
         {
             _repository = repository;
+            _validation = validation;
         }
 
         public List<Ticket> CreateTicket(TicketDto ticket)
         {
             List<Ticket> ticketsVendidos = new List<Ticket>();
 
+            if (!_validation.ValidarFuncion(ticket.FuncionId))
+                return ticketsVendidos;
+            
             if(ticket.Cantidad <= GetTicketsDisponiblesByFuncion(ticket.FuncionId) && ticket.Cantidad > 0)
             {
                 for(int i = 0; i < ticket.Cantidad; i++)

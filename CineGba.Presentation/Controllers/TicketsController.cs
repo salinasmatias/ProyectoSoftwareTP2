@@ -37,7 +37,9 @@ namespace CineGba.Presentation.Controllers
                     return Created("~api/tickets/", ticketsVendidos);
                 }
 
-                return Conflict("Error. No hay suficientes tickets disponibles para completar esta operación.");
+                return Conflict("Ocurrió un problema. No hay suficientes tickets disponibles para completar esta operación, " +
+                                "el ID ingresado no corresponde a una función registrada en el sistema, " +
+                                "o la cantidad de tickets a comprar ingresada es 0");
             }
             catch (Exception e)
             {

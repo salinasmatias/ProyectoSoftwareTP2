@@ -7,7 +7,8 @@ namespace CineGba.Application.Validations
 {
     public interface IFuncionValidation
     {
-        bool ValidarFuncion(Funcion funcion);
+        bool ValidarFecha(Funcion funcion);
+        bool ValidarFuncion(int funcionId);
     }
     public class FuncionValidation : IFuncionValidation
     {
@@ -18,7 +19,7 @@ namespace CineGba.Application.Validations
             _repository = repository;
         }
         
-        public bool ValidarFuncion(Funcion funcion)
+        public bool ValidarFecha(Funcion funcion)
         {
             var funciones = _repository.GetAllFunciones().Where(F => F.SalaId == funcion.SalaId && F.Fecha.Date == funcion.Fecha.Date).ToList();
             var duracionFuncion = new TimeSpan(2, 30, 0);
@@ -29,6 +30,11 @@ namespace CineGba.Application.Validations
                     return false;
             }
             return true;
+        }
+
+        public bool ValidarFuncion(int funcionId)
+        {
+            return _repository.GetFuncionById(funcionId) != null;
         }
     }
 }

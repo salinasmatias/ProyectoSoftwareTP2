@@ -4,7 +4,6 @@ using CineGba.Domain.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 
 namespace CineGba.Presentation.Controllers
 {
