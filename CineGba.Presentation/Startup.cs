@@ -41,9 +41,6 @@ namespace CineGba.Presentation
             services.AddTransient<ITicketService, TicketService>();
             services.AddTransient<IFuncionValidation, FuncionValidation>();
             services.AddAutoMapper(typeof(Startup));
-            /*services.AddTransient<ISalaService, SalaService>();
-            services.AddTransient<ITicketService, TicketService>();
-            */
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
