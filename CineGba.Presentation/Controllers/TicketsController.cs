@@ -22,24 +22,23 @@ namespace CineGba.Presentation.Controllers
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(List<TicketDtoForCreation>), StatusCodes.Status201Created)]
+        [ProducesResponseType(typeof(List<TicketDto>), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        public IActionResult CreateTicket([FromBody] TicketDto ticket)
+        public IActionResult CreateTicket([FromBody] TicketDto tickets)
         {
             try
             {
-                var ticketEntity = _service.CreateTicket(ticket);
+                var ticketEntity = _service.CreateTicket(tickets);
 
                 if (ticketEntity.Count > 0)
-                {
-                    var ticketsVendidos = _mapper.Map<List<TicketDtoForCreation>>(ticketEntity);
-                    return Created("~api/tickets/", ticketsVendidos);
-                }
+                    return Created("~api/tickets/", tickets);
+                
 
-                return Conflict("Ocurrió un problema. No hay suficientes tickets disponibles para completar esta operación, " +
-                                "el ID ingresado no corresponde a una función registrada en el sistema, " +
-                                "o la cantidad de tickets a comprar ingresada es 0");
+                return Conflict("Ocurrió un problema. El número de función ingresado no corresponde a una función " +
+                                "registrada en el sistema, o La cantidad de tickets en la petición es 0, o supera a la cantidad" +
+                                "de tickets disponibles para esta función. \n\n" +
+                                "Revise la petición e inténtelo nuevamente.");
             }
             catch (Exception e)
             {

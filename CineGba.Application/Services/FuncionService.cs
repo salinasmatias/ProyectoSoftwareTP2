@@ -46,7 +46,7 @@ namespace CineGba.Application.Services
             }
             else
             {
-                funcionMapeada = null;
+                return null;
             }
             
             return funcionMapeada;
