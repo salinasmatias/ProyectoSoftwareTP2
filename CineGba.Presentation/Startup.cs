@@ -41,6 +41,13 @@ namespace CineGba.Presentation
             services.AddTransient<ITicketService, TicketService>();
             services.AddTransient<IFuncionValidation, FuncionValidation>();
             services.AddAutoMapper(typeof(Startup));
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options
+                                                            .AllowAnyOrigin()
+                                                            .AllowAnyMethod()
+                                                            .AllowAnyHeader());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -52,6 +59,10 @@ namespace CineGba.Presentation
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CineGba.Presentation v1"));
             }
+
+            app.UseCors(options => options.AllowAnyOrigin()
+                                          .AllowAnyHeader()
+                                          .AllowAnyMethod());
 
             app.UseHttpsRedirection();
 

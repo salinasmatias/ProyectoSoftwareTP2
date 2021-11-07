@@ -4,6 +4,7 @@ using CineGba.Domain.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace CineGba.Presentation.Controllers
 {
@@ -37,6 +38,30 @@ namespace CineGba.Presentation.Controllers
                 }
 
                 return Ok(peliculaMapped);
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpGet]
+        [ProducesResponseType(typeof(List<PeliculaDto>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult GetPeliculasToday()
+        {
+            try
+            {
+                var peliculas = _service.GetAllPeliculas();
+                var peliculasMapped = _mapper.Map<List<PeliculaDto>>(peliculas);
+
+                if (peliculas == null)
+                {
+                    return NotFound();
+                }
+
+                return Ok(peliculasMapped);
             }
             catch (Exception)
             {
