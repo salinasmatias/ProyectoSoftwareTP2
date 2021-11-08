@@ -24,7 +24,7 @@ namespace CineGba.Presentation.Controllers
         [HttpPost]
         [ProducesResponseType(typeof(List<TicketDto>), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status409Conflict)]
+        [ProducesResponseType(typeof(ErrorTicketDto), StatusCodes.Status200OK)]
         public IActionResult CreateTicket([FromBody] TicketDto tickets)
         {
             try
@@ -35,10 +35,7 @@ namespace CineGba.Presentation.Controllers
                     return Created("~api/tickets/", tickets);
                 
 
-                return Conflict("Ocurrió un problema. El número de función ingresado no corresponde a una función " +
-                                "registrada en el sistema, o La cantidad de tickets en la petición es 0, o supera a la cantidad" +
-                                "de tickets disponibles para esta función. \n\n" +
-                                "Revise la petición e inténtelo nuevamente.");
+                return new JsonResult(new ErrorTicketDto()) { StatusCode = 200 };
             }
             catch (Exception e)
             {
