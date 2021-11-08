@@ -101,7 +101,7 @@ namespace CineGba.AccessData
                 new Pelicula
                 {
                     PeliculaId = 1,
-                    Titulo = "Batman & Robin",
+                    Titulo = "Batman and Robin",
                     Poster = "https://i.imgur.com/849x64V.png",
                     Sinopsis = "Batman and Robin try to prevent the evil pair of Mr Freeze and Poison Ivy from freezing the town. While doing so, they also try hard to continue their partnership.",
                     Trailer = "https://www.youtube.com/embed/0-GIJSZ2GAk"

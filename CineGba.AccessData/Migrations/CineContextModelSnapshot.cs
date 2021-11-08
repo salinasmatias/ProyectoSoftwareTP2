@@ -51,7 +51,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 1,
-                            Fecha = new DateTime(2021, 11, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 9, 0, 0, 0),
                             PeliculaId = 1,
                             SalaId = 1
@@ -59,7 +59,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 2,
-                            Fecha = new DateTime(2021, 11, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 13, 0, 0, 0),
                             PeliculaId = 2,
                             SalaId = 1
@@ -67,7 +67,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 3,
-                            Fecha = new DateTime(2021, 11, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 16, 0, 0, 0),
                             PeliculaId = 3,
                             SalaId = 1
@@ -75,7 +75,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 4,
-                            Fecha = new DateTime(2021, 11, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 19, 0, 0, 0),
                             PeliculaId = 4,
                             SalaId = 1
@@ -83,7 +83,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 5,
-                            Fecha = new DateTime(2021, 11, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 22, 0, 0, 0),
                             PeliculaId = 5,
                             SalaId = 1
@@ -91,7 +91,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 6,
-                            Fecha = new DateTime(2021, 11, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 19, 0, 0, 0),
                             PeliculaId = 6,
                             SalaId = 3
@@ -99,7 +99,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 7,
-                            Fecha = new DateTime(2021, 11, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 13, 0, 0, 0),
                             PeliculaId = 7,
                             SalaId = 2
@@ -107,7 +107,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 8,
-                            Fecha = new DateTime(2021, 11, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 13, 0, 0, 0),
                             PeliculaId = 8,
                             SalaId = 3
@@ -115,7 +115,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 9,
-                            Fecha = new DateTime(2021, 11, 8, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 9, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 13, 0, 0, 0),
                             PeliculaId = 11,
                             SalaId = 1
@@ -123,7 +123,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 10,
-                            Fecha = new DateTime(2021, 11, 9, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 10, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 15, 0, 0, 0),
                             PeliculaId = 11,
                             SalaId = 3
@@ -131,7 +131,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 11,
-                            Fecha = new DateTime(2021, 11, 10, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 11, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 14, 0, 0, 0),
                             PeliculaId = 12,
                             SalaId = 2
@@ -139,7 +139,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 12,
-                            Fecha = new DateTime(2021, 11, 11, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 12, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 11, 0, 0, 0),
                             PeliculaId = 12,
                             SalaId = 3
@@ -147,7 +147,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 13,
-                            Fecha = new DateTime(2021, 11, 12, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 13, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 18, 0, 0, 0),
                             PeliculaId = 10,
                             SalaId = 1
@@ -155,7 +155,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 14,
-                            Fecha = new DateTime(2021, 11, 13, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 14, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 22, 0, 0, 0),
                             PeliculaId = 10,
                             SalaId = 2
@@ -163,7 +163,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 15,
-                            Fecha = new DateTime(2021, 11, 14, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 15, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 17, 0, 0, 0),
                             PeliculaId = 9,
                             SalaId = 1
@@ -171,7 +171,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 16,
-                            Fecha = new DateTime(2021, 11, 15, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 16, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 10, 0, 0, 0),
                             PeliculaId = 9,
                             SalaId = 3
@@ -179,7 +179,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 17,
-                            Fecha = new DateTime(2021, 11, 16, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 17, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 17, 0, 0, 0),
                             PeliculaId = 8,
                             SalaId = 2
@@ -187,7 +187,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 18,
-                            Fecha = new DateTime(2021, 11, 17, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 18, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 19, 0, 0, 0),
                             PeliculaId = 8,
                             SalaId = 1
@@ -195,7 +195,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 19,
-                            Fecha = new DateTime(2021, 11, 18, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 19, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 16, 0, 0, 0),
                             PeliculaId = 7,
                             SalaId = 2
@@ -203,7 +203,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 20,
-                            Fecha = new DateTime(2021, 11, 19, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 20, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 9, 0, 0, 0),
                             PeliculaId = 6,
                             SalaId = 3
@@ -211,7 +211,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 21,
-                            Fecha = new DateTime(2021, 11, 20, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 21, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 11, 0, 0, 0),
                             PeliculaId = 2,
                             SalaId = 2
@@ -219,7 +219,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 22,
-                            Fecha = new DateTime(2021, 11, 21, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 22, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 13, 0, 0, 0),
                             PeliculaId = 2,
                             SalaId = 3
@@ -227,7 +227,7 @@ namespace CineGba.AccessData.Migrations
                         new
                         {
                             FuncionId = 23,
-                            Fecha = new DateTime(2021, 11, 7, 0, 0, 0, 0, DateTimeKind.Local),
+                            Fecha = new DateTime(2021, 11, 8, 0, 0, 0, 0, DateTimeKind.Local),
                             Horario = new TimeSpan(0, 9, 0, 0, 0),
                             PeliculaId = 1,
                             SalaId = 3
@@ -271,7 +271,7 @@ namespace CineGba.AccessData.Migrations
                             PeliculaId = 1,
                             Poster = "https://i.imgur.com/849x64V.png",
                             Sinopsis = "Batman and Robin try to prevent the evil pair of Mr Freeze and Poison Ivy from freezing the town. While doing so, they also try hard to continue their partnership.",
-                            Titulo = "Batman & Robin",
+                            Titulo = "Batman and Robin",
                             Trailer = "https://www.youtube.com/embed/0-GIJSZ2GAk"
                         },
                         new

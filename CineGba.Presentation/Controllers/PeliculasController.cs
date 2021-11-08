@@ -53,7 +53,7 @@ namespace CineGba.Presentation.Controllers
         {
             try
             {
-                var peliculas = _service.GetAllPeliculas();
+                var peliculas = _service.GetAllPeliculasToday();
                 var peliculasMapped = _mapper.Map<List<PeliculaDto>>(peliculas);
 
                 if (peliculas == null)
